@@ -10,7 +10,15 @@ namespace Domain.CustomerAggregate
 
         public SSN SSN { get; }
 
-        public Customer(string firstName, string lastName, SSN ssn)
+        private List<Guid> _accounts;
+        public IReadOnlyList<Guid> Accounts => _accounts.AsReadOnly();
+
+        private Customer()
+        {
+            _accounts = new List<Guid>();
+        }
+
+        public Customer(string firstName, string lastName, SSN ssn) : this()
         {
             FirstName = firstName;
             LastName = lastName;
